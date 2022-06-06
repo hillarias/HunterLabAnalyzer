@@ -5,7 +5,6 @@ import csv
 from io import StringIO
 from PIL import Image
 
-image = Image.open('beyond_logo.png')
 
 
 
