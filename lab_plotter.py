@@ -10,7 +10,7 @@ from PIL import Image
 
 st.set_page_config(layout="wide")
 
-st.image(image,width=300)
+
 st.title('LAB Color Analyzer') 
 st.header('Mean LAB Values')
 
