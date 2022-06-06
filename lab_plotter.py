@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np 
+import plotly.express as px
 import csv
 from io import StringIO
 from PIL import Image
