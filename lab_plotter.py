@@ -221,7 +221,7 @@ def lab_bar_plotter(filename):
 
        
 
-agree = st.checkbox('Check Here if you used want Standard Deviation Data')
+agree = st.checkbox('Check Here if You Want Standard Deviation Data')
 if agree:
         full_data = (lab_analyzer_v3(uploaded_file))
         st.header('LAB Data')
