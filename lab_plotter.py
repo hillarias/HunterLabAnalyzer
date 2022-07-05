@@ -217,6 +217,7 @@ def lab_bar_plotter(filename):
                                                                     visible = True),
                                                                        marker_color = 'Gold'
                                                                    )
+    fig.update_layout( title = 'LAB Values' , title_x = 0.45 , title_y = .90 , legend_font_size= 15 )
     return fig
 
        
