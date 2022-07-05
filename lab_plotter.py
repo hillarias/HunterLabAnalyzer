@@ -1,10 +1,12 @@
 import streamlit as st
 import pandas as pd
 import numpy as np 
-import plotly.express as px
 import csv
+import plotly.express as px
 from io import StringIO
 from PIL import Image
+import plotly.graph_objects as go
+
 
 
 
@@ -15,10 +17,10 @@ st.set_page_config(layout="wide")
 st.title('LAB Color Analyzer') 
 st.header('Mean LAB Values')
 
+uploaded_file = st.file_uploader("Upload a csv file!", type={"csv", "txt"})
 
-
-def lab_analyzer_v2():
-    uploaded_file = st.file_uploader("Upload a csv file!", type={"csv", "txt"})
+def lab_analyzer_mean(uploaded_file):
+    
     if uploaded_file is not None:
         stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
         read_file = csv.reader(stringio, delimiter=",")
@@ -83,7 +85,7 @@ def lab_analyzer_v2():
             
         return df_grouped
 
-table = lab_analyzer_v2()
+table = lab_analyzer_mean(uploaded_file)
 st.write(table)
 
 
@@ -114,3 +116,116 @@ if table is not None:
     st.header('Mean LAB Values - 3D Plot')
     st.plotly_chart(fig, sharing="streamlit" , use_container_width=True)
         
+
+def lab_analyzer_std(uploaded_file):
+
+    if uploaded_file is not None:
+        stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
+        read_file = csv.reader(stringio, delimiter=",")
+        data = list(read_file)
+    
+    #removes unnecessary header from csv,always first 13 cells#
+    no_header = data[13:]
+    
+    
+    #removeing all spectral data that is not lab values
+    no_sides = []
+
+    for row in range(len(no_header)):
+        try:
+            if len(no_header[row][0]) == 0:
+                break
+            current_row = []
+            for col in range(5):
+                current_row.append(no_header[row][col])
+            no_sides.append(current_row)
+        
+        except IndexError:
+            break
+
+    
+    
+    table = pd.DataFrame(no_sides,  dtype = float)
+
+    new_header = table.iloc[0] #grab the first row for the header
+    table = table[1:] #take the data less the header row
+    table.columns = new_header #set the header row as the df header
+
+    df = table.loc[: , ['Name','L*','a*','b*'] ] 
+    
+    
+    #removing _1,_2,_3..etc. from replicated experimental groups##
+    iterations = 10
+    for i in range(1, iterations +1):
+        df['Name'] = df['Name'].str.replace('_'+str(i),'')
+    
+    ##removing all underscores for appearance##
+    df['Name'] = df["Name"].str.replace('_',' ')
+    
+    ##setting index to experiment name and changing object type columns to float
+    df2 = df.set_index(['Name'])
+    df2["L*"] = pd.to_numeric(df2["L*"], downcast="float")
+    df2["a*"] = pd.to_numeric(df2["a*"], downcast="float")
+    df2["b*"] = pd.to_numeric(df2["b*"], downcast="float")
+    
+    ##grouping and rounding to 3 decimal places##
+    df_grouped = df2.groupby(['Name']).std()
+    l_star = np.round(list(df_grouped["L*"]) , 3)
+    a_star = np.round(list(df_grouped["a*"]) , 3)
+    b_star = np.round(list(df_grouped["b*"]) , 3)
+    
+    df_grouped["L*"] = l_star
+    df_grouped["a*"] = a_star
+    df_grouped["b*"] = b_star
+    
+    name_dictionary = {'L*': 'L*STD','a*':'a*STD', 'b*':'b*STD'}
+    
+    df_grouped = df_grouped.rename(columns= name_dictionary)
+
+    return df_grouped
+
+def lab_analyzer_v3(filename):
+    average_vals = lab_analyzer_mean(filename)
+    std_vals = lab_analyzer_std(filename)
+    std_vals.drop(average_vals.index)
+    df_add =  pd.concat([average_vals, std_vals], axis=1)
+    
+    return df_add
+
+
+def lab_bar_plotter(filename):
+    table = lab_analyzer_v3(filename)
+    
+    fig = go.Figure()
+
+    fig.add_bar(x= table.index , y= table['L*'] , name = 'L*', error_y  = 
+                                                                   dict( type = 'data',
+                                                                    array = table['L*STD'],
+                                                                    visible = True),
+                                                                    marker_color = 'SlateGray'
+                                                                    
+                                                                   )
+    fig.add_bar(x= table.index , y= table['a*'], name = 'a*', error_y  = 
+                                                                   dict( type = 'data',
+                                                                    array = table['a*STD'],
+                                                                    visible = True),
+                                                                    marker_color = 'IndianRed'
+                                                                   )
+    fig.add_bar(x= table.index , y= table['b*'] , name = 'b*', error_y  = 
+                                                                   dict( type = 'data',
+                                                                    array = table['b*STD'],
+                                                                    visible = True),
+                                                                       marker_color = 'Gold'
+                                                                   )
+    return fig
+
+       
+
+agree = st.checkbox('Check Here if you used want Standard Deviation Data')
+if agree:
+        full_data = (lab_analyzer_v3(uploaded_file))
+        st.header('LAB Data')
+        st.write(full_data)
+
+        st.header('Mean LAB Data With Standard Deviations Plot')
+        st.write(lab_bar_plotter(uploaded_file))
