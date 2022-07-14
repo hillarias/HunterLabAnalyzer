@@ -249,15 +249,14 @@ def lab_to_rgb(df):
 
     rgb_tup  =  tuple(nested_lst_of_tuples)
     
-    lab_combined = lab_to_rgb(egg)
 
-    rgb_egg = []
+    rgb_format = []
 
-    for i in range(len(lab_combined)):
-        temp = [pl.colors.label_rgb(lab_combined[i])]
-        rgb_egg+= temp
+    for i in range(len(rgb_tup)):
+        temp = [pl.colors.label_rgb(rgb_tup[i])]
+        rgb_format += temp
     
-    return rgb_egg
+    return rgb_format
 
 
 
