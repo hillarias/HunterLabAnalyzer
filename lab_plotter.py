@@ -271,5 +271,5 @@ if agree:
 
         
         color_swatch = px.bar(full_data, x = full_data.index  , color_discrete_sequence = [lab_to_rgb(full_data)])
-        fig2.update_layout(barmode='group', bargap=0,bargroupgap=0.0)
-        fig2.show()        
+        color_swatch.update_layout(barmode='group', bargap=0,bargroupgap=0.0)
+        st.write(color_swatch)       
