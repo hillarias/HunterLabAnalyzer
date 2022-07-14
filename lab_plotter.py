@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np 
 import csv
 import plotly.express as px
+import plotly as pl
 from io import StringIO
 from PIL import Image
 import plotly.graph_objects as go
@@ -220,7 +221,44 @@ def lab_bar_plotter(filename):
     fig.update_layout( title = 'LAB Values' , title_x = 0.45 , title_y = .90 , legend_font_size= 15 )
     return fig
 
-       
+
+def lab_to_rgb(df):
+    
+##creating 3 lists corresponding to l a b    ## 
+    l_lst  = df['L*'].tolist()
+    a_lst = df['a*'].tolist()
+    b_lst = df['b*'].tolist()
+
+    
+##nested list of lab values##
+    combined_lab = []
+    for i in range(len(l_lst)):
+        combined_lab += [ [l_lst[i]] + [a_lst[i]] + [b_lst[i]]  ]
+        
+##Numpy array for use in skimage package, skimage used to convert lab to rgb, turned to list for further modifi.##        
+    
+    lab_array = np.array(combined_lab)
+
+    rgb_lst  = skimage.color.lab2rgb(combined_lab).round(4).tolist()
+
+
+##tuple transformation, matplotlib.colors.to.hex  needs tuple format.##
+    
+    nested_lst_of_tuples =  [tuple(i) for i in rgb_lst]
+
+    rgb_tup  =  tuple(nested_lst_of_tuples)
+    
+    lab_combined = lab_to_rgb(egg)
+
+    rgb_egg = []
+
+    for i in range(len(lab_combined)):
+        temp = [pl.colors.label_rgb(lab_combined[i])]
+        rgb_egg+= temp
+    
+    return rgb_egg
+
+
 
 agree = st.checkbox('Check Here if You Want Standard Deviation Data')
 if agree:
@@ -230,3 +268,8 @@ if agree:
 
         st.header('Mean LAB Data With Standard Deviations Plot')
         st.write(lab_bar_plotter(uploaded_file))
+
+        
+        color_swatch = px.bar(full_data, x = full_data.index  , color_discrete_sequence = [lab_to_rgb(full_data)])
+        fig2.update_layout(barmode='group', bargap=0,bargroupgap=0.0)
+        fig2.show()        
