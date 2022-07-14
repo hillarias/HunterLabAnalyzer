@@ -1,4 +1,8 @@
-numpy
-pandas
+numpy >= 1.12
+pandas >= 1.4.3
 plotly
 plotly.express
+scikit-image[data] >= 0.18
+scipy >= 1.0
+matplotlib >= 2.1
+scikit-learn >= 0.18
