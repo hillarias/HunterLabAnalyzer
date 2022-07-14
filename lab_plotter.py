@@ -7,6 +7,7 @@ import plotly as pl
 from io import StringIO
 from PIL import Image
 import plotly.graph_objects as go
+import skimage
 
 
 
