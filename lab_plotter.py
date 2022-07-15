@@ -320,9 +320,9 @@ def de_table(df,l,a,b,ref):
 
     
 st.header('ΔE2000 From Reference Point')
-l_star = st.text_input('Type a reference L*', type = 'float')
-a_star = st.text_input('Type a reference a*', type = 'float')
-b_star = st.text_input('Type a reference b*', type = 'float')
+l_star = st.text_input('Type a reference L*', value = '1')
+a_star = st.text_input('Type a reference a*', value = '2')
+b_star = st.text_input('Type a reference b*', value = '3')
 ref_name = st.text_input('Type the name of the reference!')
 
 if ref_name is not None:
