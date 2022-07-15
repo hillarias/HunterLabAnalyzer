@@ -304,23 +304,23 @@ def de2000_calculator(df, reference_lab):
 
 
 def de_table(df,l,a,b,ref):
-    if l is not None:
-        l_star = float(l)
-        a_star = float(a)
-        b_star = float(b)
+    l_star = float(l)
+    a_star = float(a)
+    b_star = float(b)
 
 
-        ref_col_name = 'ΔE00'+ "-" + ref
-        ref_lab = tuple([l_star,a_star,b_star]) 
+    ref_col_name = 'ΔE00'+ "-" + ref
+    ref_lab = tuple([l_star,a_star,b_star]) 
 
 
-        de00_vals = de2000_calculator(df, ref_lab)
+    de00_vals = de2000_calculator(df, ref_lab)
 
-        df[ref_col_name] = de00_vals
-        st.subheader('ΔE2000 from ' + ref_name)
-        de_scatter = px.scatter(df, x = df.index , y = df.columns[-1])
-        st.write(df)
-        st.write(de_scatter)
+    df[ref_col_name] = de00_vals
+    st.subheader('ΔE2000 from ' + ref_name)
+    de_scatter = px.scatter(df, x = df.index , y = df.columns[-1])
+        
+    st.write(df)
+    st.write(de_scatter)
 
     
 st.header('ΔE2000 From Reference Point')
