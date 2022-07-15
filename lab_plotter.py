@@ -322,5 +322,5 @@ if ref_name:
         st.subheader('ΔE2000 from ' + ref_name)
         de_scatter = px.scatter(table, x = table.index , y = table.columns[-1])
         st.write(table)
-        st.write)de_scatter)
+        st.write(de_scatter)
         
