@@ -327,5 +327,5 @@ def de_table(df,l,a,b,ref):
     st.write(df)
     st.write(de_scatter)
 
- if ref_name is not None: 
+if ref_name is not None: 
     de_table(table,l_star,a_star,b_star,ref_name)
