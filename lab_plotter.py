@@ -269,6 +269,7 @@ if full_data is not None:
         
     color_swatch = px.bar(full_data, x = full_data.index  , color_discrete_sequence = [lab_to_rgb(full_data)])
     color_swatch.update_layout(barmode='group', bargap=0,bargroupgap=0.0)
+    st.header('Approximate Color Swatch from Mean LAB')
     st.write(color_swatch)     
         
         
