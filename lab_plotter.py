@@ -302,7 +302,13 @@ def de2000_calculator(df, reference_lab):
 
     return de2000_lst
 
-    
+if ref_name is not None:
+    st.subheader('ΔE2000 from ' + ref_name)
+    de_table = de_table(table,l_star,a_star,b_star,ref_name)
+     
+    de_scatter = px.scatter(de_table, x = de_table.index , y = de_table.columns[-1])
+    st.write(de_table)
+    st.write(de_scatter)    
 
     
 st.header('ΔE2000 From Reference Point')
@@ -328,10 +334,3 @@ def de_table(df,l,a,b,ref):
         
     return df
 
-if ref_name is not None:
-    st.subheader('ΔE2000 from ' + ref_name)
-    de_table = de_table(table,l_star,a_star,b_star,ref_name)
-     
-    de_scatter = px.scatter(de_table, x = de_table.index , y = de_table.columns[-1])
-    st.write(de_table)
-    st.write(de_scatter)
