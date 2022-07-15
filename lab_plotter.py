@@ -87,8 +87,8 @@ def lab_analyzer_mean(uploaded_file):
         
             
         return df_grouped
-    
- if uploaded_file is not None:
+
+if uploaded_file is not None:
     table = lab_analyzer_mean(uploaded_file)
     st.write(table)
 
