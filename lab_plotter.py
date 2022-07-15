@@ -304,7 +304,10 @@ def de2000_calculator(df, reference_lab):
 
 
 def de_table(df,l,a,b,ref):
-
+    
+    l_star = float(l)
+    a_star = float(a)
+    b_star = float(b)
 
     ref_col_name = 'ΔE00'+ "-" + ref
     ref_lab = tuple([l_star,a_star,b_star]) 
