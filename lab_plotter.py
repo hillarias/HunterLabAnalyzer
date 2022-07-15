@@ -262,16 +262,17 @@ def lab_to_rgb(df):
 
 
 full_data = (lab_analyzer_v3(uploaded_file))
-st.header('LAB Data')
-st.write(full_data)
+if full_data is not None:
+    st.header('LAB Data')
+    st.write(full_data)
 
-st.header('Mean LAB Data With Standard Deviations Plot')
-st.write(lab_bar_plotter(uploaded_file))
+    st.header('Mean LAB Data With Standard Deviations Plot')
+    st.write(lab_bar_plotter(uploaded_file))
 
         
-color_swatch = px.bar(full_data, x = full_data.index  , color_discrete_sequence = [lab_to_rgb(full_data)])
-color_swatch.update_layout(barmode='group', bargap=0,bargroupgap=0.0)
-st.write(color_swatch)     
+    color_swatch = px.bar(full_data, x = full_data.index  , color_discrete_sequence = [lab_to_rgb(full_data)])
+    color_swatch.update_layout(barmode='group', bargap=0,bargroupgap=0.0)
+    st.write(color_swatch)     
         
         
 def de2000_calculator(df, reference_lab):
