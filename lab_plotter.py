@@ -306,6 +306,7 @@ def de2000_calculator(df, reference_lab):
 
     return de2000_lst
 
+st.header('ΔE2000 From Reference Point')
 l_star = float(st.text_input('Type a reference L*'))
 a_star = float(st.text_input('Type a reference a*'))
 b_star = float(st.text_input('Type a reference b*'))
@@ -318,5 +319,6 @@ if ref_name:
         de00_vals = de2000_calculator(table, ref_lab)
         
         table[ref_col_name] = de00_vals
+        st.subheader('ΔE2000 from ' + ref_name)
         st.write(table)
         
