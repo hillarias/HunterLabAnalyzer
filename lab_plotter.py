@@ -308,7 +308,6 @@ a_star = st.text_input('Type a reference a*')
 b_star = st.text_input('Type a reference b*')
 ref_name = st.text_input('Type the name of the reference!')
 
-if ref_name is not None:
 
 def de_table(df,l,a,b,ref):
     l_star = float(l)
