@@ -306,13 +306,13 @@ def de2000_calculator(df, reference_lab):
 
     return de2000_lst
 
-l_star = st.text_input('Type a reference L*')
-a_star = st.text_input('Type a reference a*')
-b_star = st.text_input('Type a reference b*')
+l_star = float(st.text_input('Type a reference L*'))
+a_star = float(st.text_input('Type a reference a*'))
+b_star = float(st.text_input('Type a reference b*'))
 ref_name = st.text_input('Type the name of the reference!')
 
 ref_col_name = 'ΔE00'+ "-" + ref_name
-ref_lab = tuple(float([l_star,a_star,b_star])) 
+ref_lab = tuple([l_star,a_star,b_star])) 
     
 if ref_name:
         de00_vals = de2000_calculator(table, ref_lab)
