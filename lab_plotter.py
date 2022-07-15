@@ -92,10 +92,6 @@ if uploaded_file is not None:
     table = lab_analyzer_mean(uploaded_file)
     st.write(table)
 
-
-
-
-if table is not None:
     fig = px.scatter_3d(table, x='a*', y='b*', z='L*',color= table.index)
         
     fig.update_layout(scene = dict(
