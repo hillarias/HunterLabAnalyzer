@@ -312,7 +312,7 @@ b_star = st.text_input('Type a reference b*')
 ref_name = st.text_input('Type the name of the reference!')
 
 ref_col_name = 'ΔE00'+ "-" + ref_name
-ref_lab = tuple([l_star,a_star,b_star]) 
+ref_lab = tuple(float([l_star,a_star,b_star])) 
     
 if ref_name:
         de00_vals = de2000_calculator(table, ref_lab)
