@@ -306,23 +306,23 @@ st.header('ΔE2000 From Reference Point')
 l_star = st.text_input('Type a reference L*')
 a_star = st.text_input('Type a reference a*')
 b_star = st.text_input('Type a reference b*')
+ref_name = st.text_input('Type the name of the reference!')
 
-if b_star is not None:
+if ref_name is not None:
     l_star = float(l_star)
     a_star = float(a_star)
     b_star = float(b_star)
 
-    ref_name = st.text_input('Type the name of the reference!')
 
     ref_col_name = 'ΔE00'+ "-" + ref_name
     ref_lab = tuple([l_star,a_star,b_star]) 
     
-if ref_name is not None:
-        de00_vals = de2000_calculator(table, ref_lab)
+
+    de00_vals = de2000_calculator(table, ref_lab)
         
-        table[ref_col_name] = de00_vals
-        st.subheader('ΔE2000 from ' + ref_name)
-        de_scatter = px.scatter(table, x = table.index , y = table.columns[-1])
-        st.write(table)
-        st.write(de_scatter)
+    table[ref_col_name] = de00_vals
+    st.subheader('ΔE2000 from ' + ref_name)
+    de_scatter = px.scatter(table, x = table.index , y = table.columns[-1])
+    st.write(table)
+    st.write(de_scatter)
         
