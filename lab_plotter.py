@@ -303,9 +303,14 @@ def de2000_calculator(df, reference_lab):
     return de2000_lst
 
 st.header('ΔE2000 From Reference Point')
-l_star = float(st.text_input('Type a reference L*'))
-a_star = float(st.text_input('Type a reference a*'))
-b_star = float(st.text_input('Type a reference b*'))
+l_star = st.text_input('Type a reference L*')
+a_star = st.text_input('Type a reference a*')
+b_star = st.text_input('Type a reference b*')
+
+l_star = float(l_star)
+a_star = float(a_star)
+b_star = float(b_star)
+
 ref_name = st.text_input('Type the name of the reference!')
 
 ref_col_name = 'ΔE00'+ "-" + ref_name
