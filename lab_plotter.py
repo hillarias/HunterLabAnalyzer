@@ -8,6 +8,7 @@ from io import StringIO
 from PIL import Image
 import plotly.graph_objects as go
 import skimage
+from pyciede2000 import ciede2000
 
 
 
@@ -272,4 +273,50 @@ if agree:
         
         color_swatch = px.bar(full_data, x = full_data.index  , color_discrete_sequence = [lab_to_rgb(full_data)])
         color_swatch.update_layout(barmode='group', bargap=0,bargroupgap=0.0)
-        st.write(color_swatch)       
+        st.write(color_swatch)     
+        
+        
+def de2000_calculator(df, reference_lab):
+    
+    ##creating 3 lists corresponding to l a b    ## 
+    l_lst  = df['L*'].tolist()
+    a_lst = df['a*'].tolist()
+    b_lst = df['b*'].tolist()
+
+    
+##nested list of lab values##
+    combined_lab = []
+    for i in range(len(l_lst)):
+        combined_lab += [ [l_lst[i]] + [a_lst[i]] + [b_lst[i]]  ]
+        
+    nested_lst_of_tuples =  [tuple(i) for i in combined_lab]
+
+    lab_tup  =  tuple(nested_lst_of_tuples)    
+    
+    
+    de2000_lst = []
+    
+    for i in range(len(lab_tup)):
+        
+        res = ciede2000(lab_tup[i] , reference_lab)
+        
+        temp_val = res['delta_E_00']
+        
+        de2000_lst += [temp_val]   
+
+    return de2000_lst
+
+l_star = st.text_input('Type a reference L*')
+a_star = st.text_input('Type a reference a*')
+b_star = st.text_input('Type a reference b*')
+ref_name = st.text_input('Type the name of the reference!')
+
+ref_col_name = 'ΔE00'+ "-" + ref_name
+ref_lab = tuple([l_star,a_star,b_star]) 
+    
+if ref_name:
+        de00_vals = de2000_calculator(table, ref_lab)
+        
+        table[ref_col_name] = de00_vals
+        st.write(table)
+        
