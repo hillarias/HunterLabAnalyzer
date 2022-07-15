@@ -316,11 +316,10 @@ def de_table(df,l,a,b,ref):
     de00_vals = de2000_calculator(df, ref_lab)
 
     df[ref_col_name] = de00_vals
-    st.subheader('ΔE2000 from ' + ref_name)
-    de_scatter = px.scatter(df, x = df.index , y = df.columns[-1])
+   
         
-    st.write(df)
-    st.write(de_scatter)
+    return df
+    
 
     
 st.header('ΔE2000 From Reference Point')
@@ -329,5 +328,10 @@ a_star = st.text_input('Type a reference a*')
 b_star = st.text_input('Type a reference b*')
 ref_name = st.text_input('Type the name of the reference!')
 
-if ref_name is not None: 
-    de_table(table,l_star,a_star,b_star,ref_name)
+if ref_name is not None:
+    st.subheader('ΔE2000 from ' + ref_name)
+    de_table = de_table(table,l_star,a_star,b_star,ref_name)
+     
+    de_scatter = px.scatter(de_table, x = de_table.index , y = de_table.columns[-1])
+    st.write(de_table)
+    st.write(de_scatter)
