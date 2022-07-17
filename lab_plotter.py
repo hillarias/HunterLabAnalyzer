@@ -123,7 +123,7 @@ if uploaded_file is not None:
     fig.update_layout( title = 'LAB Values' , title_x = 0.45 , title_y = .90 , legend_font_size= 15 )
             
             
-            
+           
 
 
     #st.write(lab_plotter_no_labels_no_hex(table,'test'))
@@ -344,6 +344,7 @@ st.header('ΔE2000 From Reference Point')
 
 if ref_name is not None:
     st.subheader('ΔE2000 from ' + ref_name)
+    table = lab_analyzer_mean(uploaded_file)
     de_table = de_table(table,l_star,a_star,b_star,ref_name)
      
     de_scatter = px.scatter(de_table, x = de_table.index , y = de_table.columns[-1])
