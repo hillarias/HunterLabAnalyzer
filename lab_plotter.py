@@ -125,11 +125,11 @@ if uploaded_file is not None:
             
            
 
-
+    if fig is not None:
     #st.write(lab_plotter_no_labels_no_hex(table,'test'))
-    st.header('Mean LAB Values - 3D Plot')
-    st.plotly_chart(fig, sharing="streamlit" , use_container_width=True)
-        
+        st.header('Mean LAB Values - 3D Plot')
+        st.plotly_chart(fig, sharing="streamlit" , use_container_width=True)
+
 
 def lab_analyzer_std(uploaded_file):
 
