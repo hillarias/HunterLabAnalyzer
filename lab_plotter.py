@@ -24,10 +24,10 @@ st.set_page_config(layout="wide")
 # Using "with" notation
 with st.sidebar:
     uploaded_file = st.file_uploader("Upload a csv file!", type={"csv", "txt"})
-    add_radio = st.radio(
-        "Choose a shipping method",
-        ("Standard (5-15 days)", "Express (2-5 days)")
-    )
+    l_star = st.text_input('Type a reference L*', value = '0')
+    a_star = st.text_input('Type a reference a*', value = '0')
+    b_star = st.text_input('Type a reference b*', value = '0')
+    ref_name = st.text_input('Type the name of the reference!', placeholder = 'Name of Reference Condition')
 
 st.title('LAB Color Analyzer') 
 st.header('Mean LAB Values')
@@ -334,10 +334,7 @@ def de_table(df,l,a,b,ref):
 
 
 st.header('ΔE2000 From Reference Point')
-l_star = st.text_input('Type a reference L*', value = '0')
-a_star = st.text_input('Type a reference a*', value = '0')
-b_star = st.text_input('Type a reference b*', value = '0')
-ref_name = st.text_input('Type the name of the reference!', placeholder = 'Name of Reference Condition')
+
 
 
 
