@@ -19,7 +19,7 @@ st.set_page_config(layout="wide")
 
 
 # Using object notation
-add_selectbox = st.file_uploader("Upload a csv file!", type={"csv", "txt"})
+uploaded_file = st.file_uploader("Upload a csv file!", type={"csv", "txt"})
 
 # Using "with" notation
 with st.sidebar:
@@ -31,7 +31,6 @@ with st.sidebar:
 st.title('LAB Color Analyzer') 
 st.header('Mean LAB Values')
 
-uploaded_file = st.file_uploader("Upload a csv file!", type={"csv", "txt"})
 
 def lab_analyzer_mean(uploaded_file):
     
