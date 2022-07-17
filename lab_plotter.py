@@ -21,7 +21,7 @@ from pyciede2000 import ciede2000
 
 # Using "with" notation
 with st.sidebar:
-    st.image('https://ginsbergs.com/wp-content/uploads/2021/08/Beyond-Meat-Logo.png', width = 200)    
+    st.image('https://ginsbergs.com/wp-content/uploads/2021/08/Beyond-Meat-Logo.png', width =300)    
     uploaded_file = st.file_uploader("Upload a csv file!", type={"csv", "txt"})
     l_star = st.text_input('Type a reference L*', value = '0')
     a_star = st.text_input('Type a reference a*', value = '0')
