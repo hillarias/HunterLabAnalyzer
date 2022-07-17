@@ -105,7 +105,7 @@ if uploaded_file is not None:
     fig_table = go.Figure(data=[go.Table(
     header=dict(values=list(table.columns),
                 fill_color='paleturquoise',
-                align='left'))]
+                align='left'))])
     
 
     
