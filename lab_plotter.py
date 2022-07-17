@@ -125,7 +125,7 @@ if uploaded_file is not None:
             
            
 
-    if fig is not None:
+    if table is not None:
     #st.write(lab_plotter_no_labels_no_hex(table,'test'))
         st.header('Mean LAB Values - 3D Plot')
         st.plotly_chart(fig, sharing="streamlit" , use_container_width=True)
