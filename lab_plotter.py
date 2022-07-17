@@ -27,7 +27,9 @@ with st.sidebar:
     b_star = st.text_input('Type a reference b*', value = '0')
     ref_name = st.text_input('Type the name of the reference!', placeholder = 'Name of Reference Condition')
 
-st.title('LAB Color Analyzer', color = '#6bc746') 
+    
+st.image('https://ginsbergs.com/wp-content/uploads/2021/08/Beyond-Meat-Logo.png', width = 400)    
+st.title('LAB Color Analyzer') 
    
 
 
