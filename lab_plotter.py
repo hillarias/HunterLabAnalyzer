@@ -199,12 +199,13 @@ def lab_analyzer_std(uploaded_file):
         return df_grouped
 
 def lab_analyzer_v3(filename):
-    average_vals = lab_analyzer_mean(filename)
-    std_vals = lab_analyzer_std(filename)
-    std_vals.drop(average_vals.index)
-    df_add =  pd.concat([average_vals, std_vals], axis=1)
-    
-    return df_add
+    if filename is not None:
+        average_vals = lab_analyzer_mean(filename)
+        std_vals = lab_analyzer_std(filename)
+        std_vals.drop(average_vals.index)
+        df_add =  pd.concat([average_vals, std_vals], axis=1)
+
+        return df_add
 
 
 def lab_bar_plotter(filename):
