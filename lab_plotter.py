@@ -110,7 +110,7 @@ if uploaded_file is not None:
 
     
     
-    st.write(fig_table)
+    st.plotly_chart(fig_table)
 
     fig = px.scatter_3d(table, x='a*', y='b*', z='L*',color= table.index)
         
