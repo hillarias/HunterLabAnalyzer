@@ -107,7 +107,7 @@ if uploaded_file is not None:
                 fill_color='paleturquoise',
                 align='left'),
     
-])
+]
     
     
     st.write(fig)
