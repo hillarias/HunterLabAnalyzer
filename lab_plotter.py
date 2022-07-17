@@ -362,7 +362,7 @@ if ref_name is not None:
         de_scatter.update_traces(marker={'size': 15})
         de_scatter.update_layout( xaxis_title=None)
         de_scatter.update_yaxes(title_font =  {"size": 20})
-        de_scatter.update_layout(title_text= 'ΔE2000 from ' + ref_name, title_x=0.5)
+        de_scatter.update_layout(title_text= 'ΔE2000 from ' + ref_name, title_x=0.5, title_font =  {"size": 20})
         st.header('ΔE2000 From Reference Point')
         st.write(de_table)
         st.write(de_scatter)    
