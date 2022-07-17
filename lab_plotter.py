@@ -320,21 +320,21 @@ def de2000_calculator(df, reference_lab):
         return de2000_lst
 
 def de_table(df,l,a,b,ref):
-    
-    l = float(l)
-    a = float(a)
-    b = float(b)
+    if df is not None: 
+        l = float(l)
+        a = float(a)
+        b = float(b)
 
-    ref_col_name = 'ΔE00'+ "-" + ref
-    ref_lab = tuple([l,a,b]) 
+        ref_col_name = 'ΔE00'+ "-" + ref
+        ref_lab = tuple([l,a,b]) 
 
 
-    de00_vals = de2000_calculator(df, ref_lab)
+        de00_vals = de2000_calculator(df, ref_lab)
 
-    df[ref_col_name] = de00_vals
-   
-        
-    return df
+        df[ref_col_name] = de00_vals
+
+
+        return df
 
 
 
