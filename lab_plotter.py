@@ -28,12 +28,13 @@ with st.sidebar:
     ref_name = st.text_input('Type the name of the reference!', placeholder = 'Name of Reference Condition')
 
 st.title('LAB Color Analyzer') 
-st.header('Mean LAB Values')
+   
 
 
 def lab_analyzer_mean(uploaded_file):
     
     if uploaded_file is not None:
+        st.header('Mean LAB Values')
         stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
         read_file = csv.reader(stringio, delimiter=",")
         data = list(read_file)
