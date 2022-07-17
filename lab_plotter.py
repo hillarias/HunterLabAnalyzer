@@ -102,15 +102,11 @@ def lab_analyzer_mean(uploaded_file):
 if uploaded_file is not None:
     table = lab_analyzer_mean(uploaded_file)
     
-    fig_table = go.Figure(data=[go.Table(
-    header=dict(values=list(table.columns),
-                fill_color='paleturquoise',
-                align='left'))])
     
 
     
     
-    st.plotly_chart(fig_table)
+    st.write(table)
 
     fig = px.scatter_3d(table, x='a*', y='b*', z='L*',color= table.index)
         
