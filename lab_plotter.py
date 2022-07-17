@@ -19,10 +19,11 @@ st.set_page_config(layout="wide")
 
 
 # Using object notation
-uploaded_file = st.file_uploader("Upload a csv file!", type={"csv", "txt"})
+
 
 # Using "with" notation
 with st.sidebar:
+    uploaded_file = st.file_uploader("Upload a csv file!", type={"csv", "txt"})
     add_radio = st.radio(
         "Choose a shipping method",
         ("Standard (5-15 days)", "Express (2-5 days)")
