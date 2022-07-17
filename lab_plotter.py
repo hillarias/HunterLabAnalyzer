@@ -278,7 +278,7 @@ def lab_to_rgb(df):
 
 full_data = (lab_analyzer_v3(uploaded_file))
 if full_data is not None:
-    st.header('LAB Data With Relavant Standard Deviation Data')
+    st.header('Mean LAB With Standard Deviation Data')
     st.write(full_data)
 
     st.header('Mean LAB Data With Standard Deviations Plot')
