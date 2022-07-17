@@ -27,7 +27,7 @@ with st.sidebar:
     b_star = st.text_input('Type a reference b*', value = '0')
     ref_name = st.text_input('Type the name of the reference!', placeholder = 'Name of Reference Condition')
 
-st.title('LAB Color Analyzer') 
+st.title('LAB Color Analyzer', color = '#6bc746') 
    
 
 
