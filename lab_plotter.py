@@ -102,7 +102,7 @@ def lab_analyzer_mean(uploaded_file):
 if uploaded_file is not None:
     table = lab_analyzer_mean(uploaded_file)
     
-    fig = go.Figure(data=[go.Table(
+    fig_table = go.Figure(data=[go.Table(
     header=dict(values=list(table.columns),
                 fill_color='paleturquoise',
                 align='left'),
@@ -110,7 +110,7 @@ if uploaded_file is not None:
 
     
     
-    st.write(fig)
+    st.write(fig_table)
 
     fig = px.scatter_3d(table, x='a*', y='b*', z='L*',color= table.index)
         
