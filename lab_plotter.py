@@ -287,7 +287,7 @@ if full_data is not None:
         
     color_swatch = px.bar(full_data, x = full_data.index  , color_discrete_sequence = [lab_to_rgb(full_data)])
     color_swatch.update_layout(barmode='group', bargap=0,bargroupgap=0.0)
-    color_swatch.update_xaxes(visible=False)
+    color_swatch.update_layout(showlegend=False)
     color_swatch.update_yaxes(visible=False)
 
  
