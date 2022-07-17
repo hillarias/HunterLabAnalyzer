@@ -98,7 +98,7 @@ def lab_analyzer_mean(uploaded_file):
 
         
             
-        return df_grouped
+        return df_grouped.style
 
 if uploaded_file is not None:
     st.header('Mean LAB Values')
