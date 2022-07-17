@@ -363,7 +363,7 @@ if ref_name is not None:
             line=dict(
                 color='MediumPurple',
                 width=12
-            ))
+            )))
         de_scatter.update_layout( xaxis_title=None)
         st.header('ΔE2000 From Reference Point')
         st.write(de_table)
