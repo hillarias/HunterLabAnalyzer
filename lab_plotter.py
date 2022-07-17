@@ -358,7 +358,8 @@ if ref_name is not None:
     de_table = de_table(table,l_star,a_star,b_star,ref_name)
     if de_table is not None:
     
-        de_scatter = px.scatter(de_table, x = de_table.index , y = de_table.columns[-1], color = de_table.index, size = '20'*6)
+        de_scatter = px.scatter(de_table, x = de_table.index , y = de_table.columns[-1], color = de_table.index)
+        de_scatter.update_traces(marker={'size': 15})
         de_scatter.update_layout( xaxis_title=None)
         de_scatter.update_yaxes(title_font =  {"size": 20})
         st.header('ΔE2000 From Reference Point')
