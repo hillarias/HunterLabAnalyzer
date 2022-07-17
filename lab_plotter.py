@@ -14,7 +14,7 @@ from pyciede2000 import ciede2000
 
 
 
-
+st.set_page_config(layout="wide")
 
 # Using object notation
 
