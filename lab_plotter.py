@@ -290,33 +290,34 @@ if full_data is not None:
         
 def de2000_calculator(df, reference_lab):
     
+    if df is not None:
     ##creating 3 lists corresponding to l a b    ## 
-    l_lst  = df['L*'].tolist()
-    a_lst = df['a*'].tolist()
-    b_lst = df['b*'].tolist()
+        l_lst  = df['L*'].tolist()
+        a_lst = df['a*'].tolist()
+        b_lst = df['b*'].tolist()
 
-    
-##nested list of lab values##
-    combined_lab = []
-    for i in range(len(l_lst)):
-        combined_lab += [ [l_lst[i]] + [a_lst[i]] + [b_lst[i]]  ]
-        
-    nested_lst_of_tuples =  [tuple(i) for i in combined_lab]
 
-    lab_tup  =  tuple(nested_lst_of_tuples)    
-    
-    
-    de2000_lst = []
-    
-    for i in range(len(lab_tup)):
-        
-        res = ciede2000(lab_tup[i] , reference_lab)
-        
-        temp_val = res['delta_E_00']
-        
-        de2000_lst += [temp_val]   
+    ##nested list of lab values##
+        combined_lab = []
+        for i in range(len(l_lst)):
+            combined_lab += [ [l_lst[i]] + [a_lst[i]] + [b_lst[i]]  ]
 
-    return de2000_lst
+        nested_lst_of_tuples =  [tuple(i) for i in combined_lab]
+
+        lab_tup  =  tuple(nested_lst_of_tuples)    
+
+
+        de2000_lst = []
+
+        for i in range(len(lab_tup)):
+
+            res = ciede2000(lab_tup[i] , reference_lab)
+
+            temp_val = res['delta_E_00']
+
+            de2000_lst += [temp_val]   
+
+        return de2000_lst
 
 def de_table(df,l,a,b,ref):
     
