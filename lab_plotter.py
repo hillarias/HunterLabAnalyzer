@@ -329,6 +329,9 @@ def de2000_calculator(df, reference_lab):
 
         return de2000_lst
 
+    
+grouping = st.checkbox(label = 'Check here to configure data grouping!")    
+    
 def de_table(df,l,a,b,ref):
     if df is not None: 
         l = float(l)
