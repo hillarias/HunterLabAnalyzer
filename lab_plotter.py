@@ -408,7 +408,7 @@ if ref_name is not None:
  
 
     
-if trials is not None:
+if trials:
     trial_table = what_trial(table)
 
     option = st.selectbox(
