@@ -440,7 +440,8 @@ if uploaded_file is not None:
         fig3 = go.Figure(data=fig1.data + fig2.data)
 
         fig.update_xaxes(categoryorder='category ascending')
-   else:
+   
+    else:
         trial_plot = px.scatter(trial_table, x=trial_table.index,
                                 y=trial_table['ΔE00-' + ref_name], color=trial_table['Trial'])
         trial_plot.update_traces(marker={'size': 12})
