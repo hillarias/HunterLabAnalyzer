@@ -401,12 +401,13 @@ if ref_name is not None:
         de_scatter.update_layout(title_text= 'ΔE2000 from ' + ref_name, title_x=0.5, title_font =  {"size": 20})
         st.header('ΔE2000 From Reference Point')
         st.write(de_table)
-        st.write(de_scatter)   
- 
-if de_table is not None:
-    trials = st.checkbox('Click to see a scatterplot grouped by trial type!')
+        st.write(de_scatter)
+        trials = st.checkbox('Click to see a scatterplot grouped by trial type!')
 
-if de_scatter is not None:
+ 
+
+    
+if trials is not None:
     trial_table = what_trial(table)
 
     option = st.selectbox(
