@@ -416,16 +416,35 @@ if uploaded_file is not None:
         ('Raw', 'Cooked', 'All Data'))
 
     if option == "Raw":
-        trial_table = table[table.index.str.contains('raw')]
+        fig1 = px.scatter(raw_table, x=trial_table.index,
+                            y=trial_table['ΔE00-' + ref_name], color=trial_table['Trial'])
+        fig1.update_traces(marker={'size': 12})
+
+        fig2 = x.scatter(cooked_table, x=trial_table.index,
+                            y=trial_table['ΔE00-' + ref_name], opacity=0.5, color=trial_table['Trial'])
+        fig2.update_traces(marker={'size': 12}))
+
+        fig3=go.Figure(data = fig1.data + fig2.data)
 
     elif option == 'Cooked':
-        trial_table = table[table.index.str.contains('cook')]
 
-    trial_plot = px.scatter(trial_table, x=trial_table.index,
+        fig1=px.scatter(raw_table, x = trial_table.index,
+                            y = trial_table['ΔE00-' + ref_name], opacity = 0.5, color = trial_table['Trial'])
+        fig1.update_traces(marker = {'size': 12})
+
+        fig2=x.scatter(cooked_table, x = trial_table.index,
+                            y = trial_table['ΔE00-' + ref_name], color = trial_table['Trial'])
+        fig2.update_traces(marker = {'size': 12}))
+
+        fig3=go.Figure(data=fig1.data + fig2.data)
+    else:
+        trial_plot=px.scatter(trial_table, x=trial_table.index,
                             y=trial_table['ΔE00-' + ref_name], color=trial_table['Trial'])
-    trial_plot.update_traces(marker={'size': 12})
+        trial_plot.update_traces(marker={'size': 12})
 
-    st.write(trial_plot)    
+        fig3=trial_plot
+
+    st.write(fig3)
 
 
 
