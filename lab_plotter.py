@@ -407,7 +407,7 @@ if ref_name is not None:
  
 
 if uploaded_file is not None:
-    trials = st.checkbox('Click to see a scatterplot grouped by trial type!')    
+    st.subheader('ΔE2000 Data filtered by Trial') 
 
     trial_table = what_trial(table)
 
