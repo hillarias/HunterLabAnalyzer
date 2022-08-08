@@ -415,43 +415,37 @@ if uploaded_file is not None:
         'Filter by raw or cooked or select all data!',
         ('Raw', 'Cooked', 'All Data'))
 
-    if option == "Raw":
-        fig1 = px.scatter(raw_table, x=trial_table.index,
-                            y=trial_table['ΔE00-' + ref_name], color=trial_table['Trial'])
+   if option == "Raw":
+        fig1 = px.scatter(raw_table, x=raw_table.index,
+                          y=raw_table['ΔE00-' + ref_name], color=raw_table['Trial'])
         fig1.update_traces(marker={'size': 12})
 
-        fig2 = x.scatter(cooked_table, x=trial_table.index,
-                            y=trial_table['ΔE00-' + ref_name], opacity=0.5, color=trial_table['Trial'])
+        fig2 = px.scatter(cooked_table, x=cooked_table.index,
+                          y=cooked_table['ΔE00-' + ref_name], opacity=0.5, color=cooked_table['Trial'])
         fig2.update_traces(marker={'size': 12})
 
-        fig3=go.Figure(data = fig1.data + fig2.data)
-        
+        fig3 = go.Figure(data=fig1.data + fig2.data)
+
         fig3.update_xaxes(categoryorder='category ascending')
 
     elif option == 'Cooked':
 
-        fig1=px.scatter(raw_table, x = trial_table.index,
-                            y = trial_table['ΔE00-' + ref_name], opacity = 0.5, color = trial_table['Trial'])
-        fig1.update_traces(marker = {'size': 12})
+        fig1 = px.scatter(raw_table, x=raw_table.index,
+                          y=raw_table['ΔE00-' + ref_name], opacity=0.5, color=raw_table['Trial'])
+        fig1.update_traces(marker={'size': 12})
 
-        fig2=x.scatter(cooked_table, x = trial_table.index,
-                            y = trial_table['ΔE00-' + ref_name], color = trial_table['Trial'])
-        fig2.update_traces(marker = {'size': 12})
+        fig2 = px.scatter(cooked_table, x=cooked_table.index,
+                          y=cooked_table['ΔE00-' + ref_name], color=cooked_table['Trial'])
+        fig2.update_traces(marker={'size': 12})
 
-        fig3=go.Figure(data=fig1.data + fig2.data)
-        
-        fig3.update_xaxes(categoryorder='category ascending')
+        fig3 = go.Figure(data=fig1.data + fig2.data)
+
+        fig.update_xaxes(categoryorder='category ascending')
     else:
-        trial_plot=px.scatter(trial_table, x=trial_table.index,
-                            y=trial_table['ΔE00-' + ref_name], color=trial_table['Trial'])
+        trial_plot = px.scatter(trial_table, x=trial_table.index,
+                                y=trial_table['ΔE00-' + ref_name], color=trial_table['Trial'])
         trial_plot.update_traces(marker={'size': 12})
 
-        fig3=trial_plot
-        
-        
+        fig3 = trial_plot
 
     st.write(fig3)
-
-
-
-
