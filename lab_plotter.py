@@ -329,8 +329,7 @@ def de2000_calculator(df, reference_lab):
 
         return de2000_lst
 
-    
-grouping = st.checkbox('Check here to configure data grouping!')    
+      
     
 def de_table(df,l,a,b,ref):
     if df is not None: 
@@ -402,9 +401,10 @@ if ref_name is not None:
         de_scatter.update_layout(title_text= 'ΔE2000 from ' + ref_name, title_x=0.5, title_font =  {"size": 20})
         st.header('ΔE2000 From Reference Point')
         st.write(de_table)
-        st.write(de_scatter)    
-
-trials = st.checkbox('Click to see a scatterplot grouped by trial type!')
+        st.write(de_scatter)   
+ 
+if ref_name is not None:
+    trials = st.checkbox('Click to see a scatterplot grouped by trial type!')
 
 if trials:
     trial_table = what_trial(table)
