@@ -402,7 +402,8 @@ if ref_name is not None:
         st.header('ΔE2000 From Reference Point')
         st.write(de_table)
         st.write(de_scatter)
-        trials = st.checkbox('Click to see a scatterplot grouped by trial type!')
+        if de_scatter is not None: 
+            trials = st.checkbox('Click to see a scatterplot grouped by trial type!')
 
  
 
