@@ -349,7 +349,41 @@ def de_table(df,l,a,b,ref):
 
         return df
 
+def what_trial(df):
+    if df is not None:
+        df['A'] = df.index.str.endswith('a')
+        df['B'] = df.index.str.endswith('b')
+        df['C'] = df.index.str.endswith('c')
+        df['D'] = df.index.str.endswith('d')
+        df['E'] = df.index.str.endswith('e')
+        df['F'] = df.index.str.endswith('f')
+        df['G'] = df.index.str.endswith('g')
+        df['H'] = df.index.str.endswith('h')
 
+        grouped_column = []
+        for index, row in df.iterrows():
+            if row['A']:
+                grouped_column.append('A')
+            elif row['B']:
+                grouped_column.append('B')
+            elif row['C']:
+                grouped_column.append('C')
+            elif row['D']:
+                grouped_column.append('D')
+            elif row['E']:
+                grouped_column.append('E')
+            elif row['F']:
+                grouped_column.append('F')
+            elif row['G']:
+                grouped_column.append('G')
+            else:
+                grouped_column.append('H')
+
+        df['Trial'] = grouped_column
+
+        df = df.drop(columns=['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'], axis=1)
+
+        return df
 
 
 
@@ -370,7 +404,26 @@ if ref_name is not None:
         st.write(de_table)
         st.write(de_scatter)    
 
-    
+trials = st.checkbox('Click to see a scatterplot grouped by trial type!')
+
+if trials:
+    trial_table = what_trial(table)
+
+    option = st.selectbox(
+        'Filter by raw or cooked or select all data!',
+        ('Raw', 'Cooked', 'All Data'))
+
+    if option == "Raw":
+        trial_table = table[table.index.str.contains('raw')]
+
+    elif option == 'Cooked':
+        trial_table = table[table.index.str.contains('cook')]
+
+    trial_plot = px.scatter(trial_table, x=trial_table.index,
+                            y=trial_table['ΔE00-' + ref_name], color=trial_table['Trial'])
+    trial_plot.update_traces(marker={'size': 12})
+
+    st.write(trial_plot)    
 
 
 
