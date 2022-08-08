@@ -406,7 +406,8 @@ if ref_name is not None:
 
  
 
-trials = st.checkbox('Click to see a scatterplot grouped by trial type!')    
+if uploaded_file is not None:
+    trials = st.checkbox('Click to see a scatterplot grouped by trial type!')    
 if trials:
     trial_table = what_trial(table)
 
