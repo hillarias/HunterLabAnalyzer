@@ -403,7 +403,7 @@ if ref_name is not None:
         st.write(de_table)
         st.write(de_scatter)   
  
-if ref_name is not None:
+if de_table:
     trials = st.checkbox('Click to see a scatterplot grouped by trial type!')
 
 if trials:
