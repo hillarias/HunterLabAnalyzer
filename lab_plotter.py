@@ -207,7 +207,7 @@ def lab_bar_plotter(filename,color_value):
                 marker_color='SlateGray'
 
                 )
-        fig.update_layout(title='L* Valuds', title_x=0.45,
+        fig.update_layout(title='L* Values', title_x=0.45,
                       title_y=.90, legend_font_size=15)
     elif color_value == 'a*':
         fig.add_bar(x=table.index, y=table['a*'], name='a*', error_y=dict(type='data',
