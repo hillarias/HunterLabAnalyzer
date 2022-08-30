@@ -196,28 +196,56 @@ def lab_analyzer_v3(filename):
         return df_add
 
 
-def lab_bar_plotter(filename):
+def lab_bar_plotter(filename,color_value):
     table = lab_analyzer_v3(filename)
 
     fig = go.Figure()
-
-    fig.add_bar(x=table.index, y=table['L*'], name='L*', error_y=dict(type='data',
+    if color_value == 'L*':
+        fig.add_bar(x=table.index, y=table['L*'], name='L*', error_y=dict(type='data',
                                                                       array=table['L*STD'],
                                                                       visible=True),
                 marker_color='SlateGray'
 
                 )
-    fig.add_bar(x=table.index, y=table['a*'], name='a*', error_y=dict(type='data',
+        fig.update_layout(title='L* Valuds', title_x=0.45,
+                      title_y=.90, legend_font_size=15)
+    elif color_value == 'a*':
+        fig.add_bar(x=table.index, y=table['a*'], name='a*', error_y=dict(type='data',
                                                                       array=table['a*STD'],
                                                                       visible=True),
                 marker_color='IndianRed'
                 )
-    fig.add_bar(x=table.index, y=table['b*'], name='b*', error_y=dict(type='data',
+        fig.update_layout(title='a* Values', title_x=0.45,
+                      title_y=.90, legend_font_size=15)
+        
+    elif color_value == 'b*':
+        fig.add_bar(x=table.index, y=table['b*'], name='b*', error_y=dict(type='data',
                                                                       array=table['b*STD'],
                                                                       visible=True),
                 marker_color='Gold'
                 )
-    fig.update_layout(title='LAB Values', title_x=0.45,
+        fig.update_layout(title='b* Values', title_x=0.45,
+                      title_y=.90, legend_font_size=15)
+        
+        
+    else:
+        fig.add_bar(x=table.index, y=table['L*'], name='L*', error_y=dict(type='data',
+                                                                      array=table['L*STD'],
+                                                                      visible=True),
+                marker_color='SlateGray'
+
+                )
+        fig.add_bar(x=table.index, y=table['a*'], name='a*', error_y=dict(type='data',
+                                                                      array=table['a*STD'],
+                                                                      visible=True),
+                marker_color='IndianRed'
+                )
+        fig.add_bar(x=table.index, y=table['b*'], name='b*', error_y=dict(type='data',
+                                                                      array=table['b*STD'],
+                                                                      visible=True),
+                marker_color='Gold'
+                )
+        fig.update_layout(title='LAB Values', title_x=0.45,
                       title_y=.90, legend_font_size=15)
     return fig
 
@@ -258,15 +286,22 @@ def lab_to_rgb(df):
 
 
 full_data = (lab_analyzer_v3(uploaded_file))
+
 if full_data is not None:
+
     st.header('Mean LAB With Standard Deviation Data')
     st.write(full_data)
 
     st.header('Mean LAB Data With Standard Deviations Plot')
+    
+    color_value = st.selectbox(
+     'What color value would you like to see?',
+     ('L*', 'a*', 'b*','All Values'))
     st.write(lab_bar_plotter(uploaded_file))
-
+     
     color_swatch = px.bar(full_data, x=full_data.index,
                           color_discrete_sequence=[lab_to_rgb(full_data)])
+    
     color_swatch.update_layout(barmode='group', bargap=0, bargroupgap=0.0)
     color_swatch.update_layout(showlegend=False, xaxis_title=None)
     color_swatch.update_yaxes(visible=False)
