@@ -297,7 +297,7 @@ if full_data is not None:
     color_value = st.selectbox(
      'What color value would you like to see?',
      ('L*', 'a*', 'b*','All Values'))
-    st.write(lab_bar_plotter(uploaded_file))
+    st.write(lab_bar_plotter(uploaded_file,color_value))
      
     color_swatch = px.bar(full_data, x=full_data.index,
                           color_discrete_sequence=[lab_to_rgb(full_data)])
